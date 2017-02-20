@@ -8,6 +8,7 @@ ODK Aggregate installation tools
 * Cleanup Dockerfiles, docker_entrypoint.sh, try debian based images
 * Test with Vagrant
 * Packer for Virtualbox, for DigitalOcean
+* TLS certs
 
 
 # INFO
