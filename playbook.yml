@@ -1,0 +1,14 @@
+---
+
+- name: Setup ODK Aggregate
+  hosts: odk
+  gather_facts: yes
+  roles:
+    - { role: hostname }
+    - { role: sshd }
+    - { role: docker }
+    - { role: odk }
+
+
+
+

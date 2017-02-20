@@ -1,0 +1,43 @@
+---
+
+- name: Test Architecture
+  assert:
+    that:
+      - "ansible_architecture == 'x86_64'"
+    msg: "Architecture must be x86_64."
+
+- name: Test Distribution
+  assert:
+    that:
+      - "ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'"
+    msg: "Distribution must be Ubuntu or Debian."
+
+- name: Test Distribution Release
+  assert:
+    that:
+      - "ansible_distribution_release == 'xenial' or ansible_distribution_release == 'trusty' or ansible_distribution_release == 'jessie'"
+    msg: "Distribution must be Ubuntu Xenial, Trusty or Debian Jessie."
+
+- name: disable password authentication 
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: '^PasswordAuthentication'
+    line: "PasswordAuthentication no"
+    state: present
+  notify: restart sshd
+
+- name: disable root login 
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: '^PermitRootLogin'
+    line: "PermitRootLogin no"
+    state: present
+  notify: restart sshd
+
+- name: disable UseDNS
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: '^UseDNS'
+    line: "UseDNS no"
+    state: present
+  notify: restart sshd

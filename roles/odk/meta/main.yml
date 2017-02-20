@@ -1,0 +1,22 @@
+dependencies: 
+  - { role: docker }
+
+galaxy_info:
+  author: Andrey N. Petrov
+  owner: Andrey N. Petrov
+  description: ODK Aggregate in Docker.
+  company: Smartbrood LLC
+  license: Apache
+  min_ansible_version: 1.2
+
+  platforms:
+  - name: Ubuntu
+    versions:
+     - xenial
+     - trusty
+  - name: Debian
+    versions:
+     - jessie
+
+  galaxy_tags:
+  - odk aggregate

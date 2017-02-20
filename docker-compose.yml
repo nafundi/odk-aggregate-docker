@@ -1,0 +1,26 @@
+version: '3'
+services:
+  mariadb:
+    image: smartbrood/odk-mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    volumes:
+#      - ./docker/mariadb/my.cnf:/etc/mysql/my.cnf
+#      - ./docker/mariadb/create_db_and_user.sql:/docker-entrypoint-initdb.d/create_db_and_user.sql
+      - mysql_volume:/var/lib/mysql
+  tomcat:
+    image: smartbrood/odk-tomcat:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./docker/tomcat/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./docker/tomcat/ODKAggregate-settings.jar:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/ODKAggregate-settings.jar
+    links:
+      - mariadb:mysql
+
+volumes:
+  mysql_volume:
+
+

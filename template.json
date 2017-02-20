@@ -1,0 +1,34 @@
+{
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "./playbook.yml"
+    }
+  ],
+  "builders": [
+    {
+      "type": "digitalocean",
+      "api_token": "YOUR API KEY",
+      "image": "debian-8-x64",
+      "region": "nyc2",
+      "size": "512mb"
+    },
+    {
+      "type": "googlecompute",
+      "account_file": "account.json",
+      "project_id": "my project",
+      "source_image": "debian-7-wheezy-v20150127",
+      "zone": "us-central1-a"
+    },
+    {
+      "type": "amazon-ebs",
+      "access_key": "YOUR KEY HERE",
+      "secret_key": "YOUR SECRET KEY HERE",
+      "region": "us-east-1",
+      "source_ami": "ami-fce3c696",
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "packer-quick-start {{timestamp}}"
+    }
+  ]
+}

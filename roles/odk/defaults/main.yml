@@ -1,0 +1,5 @@
+---
+
+odk_dependency_packages:
+  - make
+  - git

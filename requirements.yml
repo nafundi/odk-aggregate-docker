@@ -1,0 +1,10 @@
+- name: hostname
+  src: Smartbrood.hostname-ansible-role
+
+- name: sshd
+  src: Smartbrood.sshd-ansible-role
+
+- name: docker
+  src: Smartbrood.docker-ansible-role
+
+

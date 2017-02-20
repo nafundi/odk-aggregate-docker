@@ -1,0 +1,47 @@
+---
+
+- name: Test Architecture
+  assert:
+    that:
+      - "ansible_architecture == 'x86_64'"
+    msg: "Architecture must be x86_64."
+
+- name: Test Distribution
+  assert:
+    that:
+      - "ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'"
+    msg: "Distribution must be Ubuntu or Debian."
+
+- name: Test Distribution Release
+  assert:
+    that:
+      - "ansible_distribution_release == 'xenial' or ansible_distribution_release == 'trusty' or ansible_distribution_release == 'jessie'"
+    msg: "Distribution must be Ubuntu Xenial, Trusty or Debian Jessie."
+
+- name: install odk dependency packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ odk_dependency_packages }}"
+
+- name: git clone odk-aggregate
+  git:
+    repo: https://github.com/Smartbrood/odk-aggregate.git
+    dest: /tmp/odk-aggregate
+
+- name: start mariadb docker container
+  shell: make mariadb-daemon
+  args:
+    chdir: /tmp/odk-aggregate
+    executable: /bin/bash
+
+- name: wait for database port
+  wait_for:
+    port: 3306
+    delay: 10
+
+- name: start tomcat docker container
+  shell: make tomcat-daemon
+  args:
+    chdir: /tmp/odk-aggregate
+    executable: /bin/bash
