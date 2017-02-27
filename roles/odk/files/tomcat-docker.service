@@ -1,0 +1,14 @@
+[Unit]
+Description=Tomcat container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/local/bin/docker-compose up tomcat
+ExecStop=/usr/local/bin/docker-compose stop -t 5 tomcat
+ExecStopPost=/usr/local/bin/docker-compose rm -f tomcat
+WorkingDirectory=/usr/local/odk-aggregate
+
+[Install]
+WantedBy=default.target

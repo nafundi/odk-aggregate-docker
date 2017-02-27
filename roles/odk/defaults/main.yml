@@ -3,3 +3,7 @@
 odk_dependency_packages:
   - make
   - git
+
+odk_systemd_files:
+  - mariadb-docker.service
+  - tomcat-docker.service

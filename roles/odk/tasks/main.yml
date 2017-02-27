@@ -27,21 +27,40 @@
 - name: git clone odk-aggregate
   git:
     repo: https://github.com/Smartbrood/odk-aggregate.git
-    dest: /tmp/odk-aggregate
+    dest: /usr/local/odk-aggregate
 
-- name: start mariadb docker container
-  shell: make mariadb-daemon
-  args:
-    chdir: /tmp/odk-aggregate
-    executable: /bin/bash
+- name: copy systemd service files
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: "{{ odk_systemd_files }}"
+  notify: reload systemd
+
+- meta: flush_handlers
+
+- name: start mariadb
+  systemd:
+    name: mariadb-docker.service
+    state: started
+    enabled: True
 
 - name: wait for database port
   wait_for:
     port: 3306
     delay: 10
 
-- name: start tomcat docker container
-  shell: make tomcat-daemon
-  args:
-    chdir: /tmp/odk-aggregate
-    executable: /bin/bash
+- name: start tomcat
+  systemd:
+    name: tomcat-docker.service
+    state: started
+    enabled: True
+
+- name: wait for tomcat port
+  wait_for:
+    port: 8080
+    delay: 10
+
+

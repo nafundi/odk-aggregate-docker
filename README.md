@@ -3,8 +3,7 @@ ODK Aggregate installation tools
 
 
 # TODO
-* Make systemd service for Tomcat and MariaDB
-* ansible odk role - render configs, instal and start services
+* ansible odk role - render configs
 * Cleanup Dockerfiles, docker_entrypoint.sh, try debian based images
 * Test with Vagrant
 * Packer for Virtualbox, for DigitalOcean

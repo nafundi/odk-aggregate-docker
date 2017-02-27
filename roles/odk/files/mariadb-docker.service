@@ -1,0 +1,14 @@
+[Unit]
+Description=MariaDB container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/local/bin/docker-compose up mariadb
+ExecStop=/usr/local/bin/docker-compose stop -t 5 mariadb
+ExecStopPost=/usr/local/bin/docker-compose rm -f mariadb
+WorkingDirectory=/usr/local/odk-aggregate
+
+[Install]
+WantedBy=default.target

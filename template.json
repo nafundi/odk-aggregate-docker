@@ -2,13 +2,14 @@
   "provisioners": [
     {
       "type": "ansible",
-      "playbook_file": "./playbook.yml"
+      "playbook_file": "./playbook.yml",
+      "groups": "odk"
     }
   ],
   "builders": [
     {
       "type": "digitalocean",
-      "api_token": "YOUR API KEY",
+      "api_token": "5e84d655f2267653f2ce53c7cccf78f47ef421052da86dca878ef737871cc4db",
       "image": "debian-8-x64",
       "region": "nyc2",
       "size": "512mb"
