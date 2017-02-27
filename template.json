@@ -6,19 +6,26 @@
       "groups": "odk"
     }
   ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "packer_{{.Provider}}.box"
+    }
+  ],
   "builders": [
     {
       "type": "digitalocean",
       "api_token": "5e84d655f2267653f2ce53c7cccf78f47ef421052da86dca878ef737871cc4db",
       "image": "debian-8-x64",
       "region": "nyc2",
-      "size": "512mb"
+      "size": "512mb",
+      "ssh_username": "root"
     },
     {
       "type": "googlecompute",
       "account_file": "account.json",
-      "project_id": "my project",
-      "source_image": "debian-7-wheezy-v20150127",
+      "project_id": "odk",
+      "source_image": "debian-8",
       "zone": "us-central1-a"
     },
     {
