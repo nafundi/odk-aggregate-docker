@@ -15,3 +15,6 @@ galaxy:
 
 do:
 	packer build -only=digitalocean ./template.json
+
+debian:
+	packer build -only=virtualbox-iso ./debian.json
