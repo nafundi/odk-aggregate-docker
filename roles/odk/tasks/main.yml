@@ -28,6 +28,7 @@
   git:
     repo: https://github.com/Smartbrood/odk-aggregate.git
     dest: "{{ odk_dir }}"
+    update: no
 
 - name: copy systemd service files
   copy:
@@ -69,5 +70,6 @@
   wait_for:
     port: 8080
     delay: 10
+    timeout: 600
 
 
