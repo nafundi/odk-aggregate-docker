@@ -1,5 +1,5 @@
 
-.PHONY: up mariadb tomcat clean galaxy do
+.PHONY: up mariadb tomcat clean galaxy digitalocean box
 
 mariadb:
 	docker-compose up mariadb
@@ -13,8 +13,8 @@ clean:
 galaxy:
 	ansible-galaxy install -f -r ./requirements.yml
 
-do:
+digitalocean:
 	packer build -only=digitalocean ./template.json
 
-debian:
+box:
 	packer build -only=virtualbox-iso ./debian.json

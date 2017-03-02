@@ -1,4 +1,7 @@
 {
+  "variables": {
+    "digitalocean_api_token": "5e84d655f2267653f2ce53c7cccf78f47ef421052da86dca878ef737871cc4db",
+  },
   "provisioners": [
     {
       "type": "ansible",
@@ -15,7 +18,7 @@
   "builders": [
     {
       "type": "digitalocean",
-      "api_token": "5e84d655f2267653f2ce53c7cccf78f47ef421052da86dca878ef737871cc4db",
+      "api_token": "{{user `digitalocean_api_token`}}",
       "image": "debian-8-x64",
       "region": "nyc2",
       "size": "512mb",
