@@ -7,11 +7,7 @@ services:
       MYSQL_DATABASE: aggregate
       MYSQL_USER: aggregate
       MYSQL_PASSWORD: aggregate
-#    ports:
-#      - "3306:3306"
     volumes:
-#      - ./docker/mariadb/my.cnf:/etc/mysql/my.cnf
-#      - ./docker/mariadb/create_db_and_user.sql:/docker-entrypoint-initdb.d/create_db_and_user.sql
       - mysql_volume:/var/lib/mysql
   tomcat:
     image: smartbrood/odk-tomcat:latest

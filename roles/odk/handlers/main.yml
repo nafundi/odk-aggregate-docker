@@ -4,4 +4,4 @@
   command: systemctl daemon-reload
 
 - name: make ODKAggregate-settings.jar
-  command: 
+  command: "jar -cvf {{ odk_dir }}/docker/tomcat/ODKAggregate-settings.jar -C /tmp/ODKAggregate-settings ."

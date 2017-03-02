@@ -41,7 +41,6 @@ VOLUME /var/lib/mysql
 
 COPY docker-entrypoint.sh /usr/local/bin/
 COPY my.cnf /etc/mysql/my.cnf
-#COPY create_db_and_user.sql /docker-entrypoint-initdb.d/create_db_and_user.sql
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 

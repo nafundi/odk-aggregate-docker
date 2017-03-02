@@ -27,7 +27,7 @@
 - name: git clone odk-aggregate
   git:
     repo: https://github.com/Smartbrood/odk-aggregate.git
-    dest: /usr/local/odk-aggregate
+    dest: "{{ odk_dir }}"
 
 - name: copy systemd service files
   copy:
@@ -39,6 +39,9 @@
   with_items: "{{ odk_systemd_files }}"
   notify: reload systemd
 
+- name: include config.yml
+  include: config.yml
+
 - meta: flush_handlers
 
 - name: start mariadb
@@ -47,12 +50,12 @@
     state: started
     enabled: True
 
-- name: wait for mariadb to be available
-  shell: "docker-compose exec mariadb /bin/sh -c 'echo "show databases;" > /sql.txt' && docker-compose exec mariadb /bin/sh -c 'mysql -uroot -p{{ mariadb_root_password }} < /sql.txt' || true"
+- name: wait for mariadb database to be available
+  shell: "docker-compose exec mariadb /bin/sh -c 'echo \"show databases;\" > /sql.txt' && docker-compose exec mariadb /bin/sh -c 'mysql -uroot -p{{ mariadb_root_password }} < /sql.txt' || true"
   args:
-    chdir: /usr/local/odk-aggregate
+    chdir: "{{ odk_dir }}"
   register: result
-  until: result.stderr.find("information_schema") != -1
+  until: result.stderr.find("information_schema") == -1
   retries: 30
   delay: 5
 

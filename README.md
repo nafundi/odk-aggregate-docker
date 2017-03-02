@@ -2,10 +2,6 @@
 ODK Aggregate installation tools
 
 
-# FIXME
-* Do not expose 3306 port and replace wait for database port task for security reason
-
-
 # TODO
 * ansible odk role - render configs
 * Cleanup Dockerfiles, docker_entrypoint.sh, try debian based images

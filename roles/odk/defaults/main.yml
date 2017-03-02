@@ -1,6 +1,11 @@
 ---
 
+odk_dir: /usr/local/odk-aggregate
+
+odk_vhost: example.org
+
 odk_dependency_packages:
+  - fastjar
   - make
   - git
 

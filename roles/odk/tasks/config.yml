@@ -3,12 +3,18 @@
 - name: render server.xml
   template:
     src: server.xml.j2
-    dest: /tmp/server.xml
+    dest: "{{ odk_dir }}/docker/tomcat/server.xml"
+
+- name: ensure /tmp/ODKAggregate-settings dir exist
+  file:
+    path: "{{ odk_dir }}/docker/tomcat/ODKAggregate-settings"
+    state: directory
+    mode: 0755
 
 - name: render odk settings
   template:
     src: "ODKAggregate-settings/{{ item }}.j2"
-    dest: "/tmp/ODKAggregate-settings/{{ item }}"
+    dest: "{{ odk_dir }}/docker/tomcat/ODKAggregate-settings/{{ item }}"
   with_items: "{{ odk_settings_templates }}"
   notify: make ODKAggregate-settings.jar
 
