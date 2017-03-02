@@ -7,3 +7,13 @@ odk_dependency_packages:
 odk_systemd_files:
   - mariadb-docker.service
   - tomcat-docker.service
+
+odk_settings_templates:
+  - jdbc.properties
+  - logging.properties
+  - odk-common-security-settings.xml
+  - odk-security-settings.xml
+  - odk-settings.xml
+  - security.properties
+
+mariadb_root_password: secret

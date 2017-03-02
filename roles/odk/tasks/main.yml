@@ -47,10 +47,14 @@
     state: started
     enabled: True
 
-- name: wait for database port
-  wait_for:
-    port: 3306
-    delay: 10
+- name: wait for mariadb to be available
+  shell: "docker-compose exec mariadb /bin/sh -c 'echo "show databases;" > /sql.txt' && docker-compose exec mariadb /bin/sh -c 'mysql -uroot -p{{ mariadb_root_password }} < /sql.txt' || true"
+  args:
+    chdir: /usr/local/odk-aggregate
+  register: result
+  until: result.stderr.find("information_schema") != -1
+  retries: 30
+  delay: 5
 
 - name: start tomcat
   systemd:
