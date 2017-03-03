@@ -9,6 +9,21 @@ ODK Aggregate installation tools
 * make tomcat        - start docker container with tomcat
 
 
+## Setup domain name
+Default domain name: "example.org".
+Port: 8080.
+Access to ODK Aggregate: http://example.org:8080  (Write "127.0.0.1 example.org" in /etc/hosts) 
+Setup your domain name in "./roles/odk/defaults/main.yml"  => "odk_vhost: example.org"
+
+
+# Requirements
+* Packer and Vagrant by HashiCorp
+* Virtualbox
+* Ansible
+* Docker and Docker-compose
+* Make
+
+
 # TODO
 * TLS certs
 * Packer for Google, AWS

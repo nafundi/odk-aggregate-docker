@@ -1,6 +1,9 @@
 
 .PHONY: up mariadb tomcat clean galaxy digitalocean box
 
+up:
+	vagrant up
+
 mariadb:
 	docker-compose up mariadb
 
