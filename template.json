@@ -1,6 +1,8 @@
 {
   "variables": {
-    "digitalocean_api_token": "5e84d655f2267653f2ce53c7cccf78f47ef421052da86dca878ef737871cc4db",
+    "digitalocean_api_token": "type digitalocean_api_token",
+    "aws_access_key": "type your aws_access_key",
+    "aws_secret_key": "type aws_secret_key"
   },
   "provisioners": [
     {
@@ -33,12 +35,19 @@
     },
     {
       "type": "amazon-ebs",
-      "access_key": "YOUR KEY HERE",
-      "secret_key": "YOUR SECRET KEY HERE",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
       "region": "us-east-1",
-      "source_ami": "ami-fce3c696",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "*debian-jessie-amd64*",
+          "root-device-type": "ebs"
+         },
+        "most_recent": true
+      },
       "instance_type": "t2.micro",
-      "ssh_username": "ubuntu",
+      "ssh_username": "admin",
       "ami_name": "packer-quick-start {{timestamp}}"
     }
   ]

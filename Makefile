@@ -19,5 +19,8 @@ galaxy:
 digitalocean:
 	packer build -only=digitalocean ./template.json
 
+aws:
+	packer build -only=amazon-ebs ./template.json
+
 box:
 	packer build -only=virtualbox-iso ./debian.json

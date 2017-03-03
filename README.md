@@ -24,6 +24,10 @@ Setup your domain name in "./roles/odk/defaults/main.yml"  => "odk_vhost: exampl
 * Make
 
 
+# AWS
+Type aws_access_key and aws_secret_key in ./template.json
+
+
 # TODO
 * TLS certs
 * Packer for Google, AWS

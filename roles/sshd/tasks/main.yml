@@ -26,13 +26,14 @@
     state: present
   notify: restart sshd
 
-#- name: disable root login 
-#  lineinfile:
-#    dest: "/etc/ssh/sshd_config"
-#    regexp: '^PermitRootLogin'
-#    line: "PermitRootLogin no"
-#    state: present
-#  notify: restart sshd
+- name: disable root login 
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: '^PermitRootLogin'
+    line: "PermitRootLogin no"
+    state: present
+  when: sshd_disable_root 
+  notify: restart sshd
 
 - name: disable UseDNS
   lineinfile:
