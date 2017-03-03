@@ -3,17 +3,19 @@ ODK Aggregate installation tools
 
 
 # Usage
-* make digitalocean  - make digitalocean image (provide your API TOKEN first)
+* make digitalocean  - make digitalocean image (edit digitalocean_api_token in ./template.json)
+* make aws           - make AWS AMI (edit aws_access_key and aws_secret_key in ./template.json)
 * make box           - make vagrant box (with virtualbox)
+* make up            - start and provision virtualbox vm with vagrant 
 * make mariadb       - start docker container with mariadb
 * make tomcat        - start docker container with tomcat
 
 
-## Setup domain name
-Default domain name: "example.org".
-Port: 8080.
-Access to ODK Aggregate: http://example.org:8080  (Write "127.0.0.1 example.org" in /etc/hosts) 
-Setup your domain name in "./roles/odk/defaults/main.yml"  => "odk_vhost: example.org"
+# Setup domain name
+* Default domain name: "example.org".
+* Port: 8080.
+* Access to ODK Aggregate: http://example.org:8080  (Write "127.0.0.1 example.org" in /etc/hosts) 
+* Setup your domain name in "./roles/odk/defaults/main.yml"  => "odk_vhost: example.org"
 
 
 # Requirements
@@ -24,8 +26,12 @@ Setup your domain name in "./roles/odk/defaults/main.yml"  => "odk_vhost: exampl
 * Make
 
 
+# DigitalOcean
+* Edit digitalocean_api_token in ./template.json
+
+
 # AWS
-Type aws_access_key and aws_secret_key in ./template.json
+* Edit aws_access_key and aws_secret_key in ./template.json
 
 
 # TODO
