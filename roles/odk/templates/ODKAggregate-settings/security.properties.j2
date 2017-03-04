@@ -44,11 +44,11 @@ wink.handlersFactoryClass=org.opendatakit.aggregate.odktables.impl.api.wink.AppE
 security.server.superUser=
 # Define a superUserUsername to insert an ODK Aggregate username that can
 # access the server.  The initial password for this username is 'aggregate'
-security.server.superUserUsername=aggregate
+security.server.superUserUsername={{ odk_superuser }}
 
 # realm definition
 # realmString -- what should be sent to users when BasicAuth or DigestAuth is done
-security.server.realm.realmString=odk ODK Aggregate
+security.server.realm.realmString={{ odk_realmstring }}
 #
 #
 

@@ -2,19 +2,15 @@
   "variables": {
     "digitalocean_api_token": "type digitalocean_api_token",
     "aws_access_key": "type your aws_access_key",
-    "aws_secret_key": "type aws_secret_key"
+    "aws_secret_key": "type aws_secret_key",
+    "googlecompute_project_id": "odk-aggregate-160508",
+    "googlecompute_account_file": "googlecompute_account.json"
   },
   "provisioners": [
     {
       "type": "ansible",
       "playbook_file": "./playbook.yml",
       "groups": "odk"
-    }
-  ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "output": "packer_{{.Provider}}.box"
     }
   ],
   "builders": [
@@ -28,10 +24,11 @@
     },
     {
       "type": "googlecompute",
-      "account_file": "account.json",
-      "project_id": "odk",
-      "source_image": "debian-8",
-      "zone": "us-central1-a"
+      "account_file": "{{user `googlecompute_account_file`}}",
+      "project_id": "{{user `googlecompute_project_id`}}",
+      "source_image_family": "debian-8",
+      "zone": "us-central1-a",
+      "ssh_username": "admin"
     },
     {
       "type": "amazon-ebs",

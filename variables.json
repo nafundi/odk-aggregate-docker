@@ -1,0 +1,7 @@
+{
+  "digitalocean_api_token": "type your digitalocean_api_token",
+  "aws_access_key": "type your aws_access_key",
+  "aws_secret_key": "type your aws_secret_key",
+  "googlecompute_project_id": "type your project_id",
+  "googlecompute_account_file": "googlecompute_account.json"
+}

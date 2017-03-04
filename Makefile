@@ -17,10 +17,13 @@ galaxy:
 	ansible-galaxy install -f -r ./requirements.yml
 
 digitalocean:
-	packer build -only=digitalocean ./template.json
+	packer build -only=digitalocean -var-file=variables.json ./template.json
 
 aws:
-	packer build -only=amazon-ebs ./template.json
+	packer build -only=amazon-ebs -var-file=variables.json ./template.json
+
+google:
+	packer build -only=googlecompute -var-file=variables.json ./template.json
 
 box:
-	packer build -only=virtualbox-iso ./debian.json
+	packer build -only=virtualbox-iso -var-file=variables.json ./debian.json

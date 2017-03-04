@@ -1,5 +1,14 @@
 ---
 
+- name: copy tls files
+  copy:
+    src: "{{ item }}"
+    dest: ""{{ odk_dir }}/docker/tomcat/tls/{{ item }}"
+    owner: root
+    group: root
+    mode: 0600
+  with_items: "{{ odk_tls_files }}"
+
 - name: render server.xml
   template:
     src: server.xml.j2

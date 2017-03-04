@@ -16,6 +16,7 @@ services:
     volumes:
       - ./docker/tomcat/server.xml:/usr/local/tomcat/conf/server.xml
       - ./docker/tomcat/ODKAggregate-settings.jar:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/ODKAggregate-settings.jar
+      - ./docker/tomcat/tls:/etc/tls
     links:
       - mariadb:mysql
 
