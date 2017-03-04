@@ -13,6 +13,7 @@ services:
     image: smartbrood/odk-tomcat:latest
     ports:
       - "8080:8080"
+      - "8443:8443"
     volumes:
       - ./docker/tomcat/server.xml:/usr/local/tomcat/conf/server.xml
       - ./docker/tomcat/ODKAggregate-settings.jar:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/ODKAggregate-settings.jar

@@ -5,3 +5,10 @@
 
 - name: make ODKAggregate-settings.jar
   command: "jar -cvf {{ odk_dir }}/docker/tomcat/ODKAggregate-settings.jar -C {{ odk_dir }}/docker/tomcat/ODKAggregate-settings ."
+  notify: restart tomcat
+
+- name: restart tomcat
+  systemd:
+    name: tomcat-docker.service
+    state: restarted
+    enabled: True

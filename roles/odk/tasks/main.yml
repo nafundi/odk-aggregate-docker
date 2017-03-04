@@ -40,10 +40,10 @@
   with_items: "{{ odk_systemd_files }}"
   notify: reload systemd
 
+- meta: flush_handlers
+
 - name: include config.yml
   include: config.yml
-
-- meta: flush_handlers
 
 - name: start mariadb
   systemd:

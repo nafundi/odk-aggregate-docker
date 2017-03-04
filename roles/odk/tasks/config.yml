@@ -3,25 +3,28 @@
 - name: copy odk_tls_key
   copy:
     src: "{{ odk_tls_key }}"
-    dest: ""{{ odk_dir }}/docker/tomcat/tls/{{ odk_tls_key  }}"
+    dest: "{{ odk_dir }}/docker/tomcat/tls/{{ odk_tls_key  }}"
     owner: root
     group: root
     mode: 0600
+  notify: restart tomcat
 
 - name: copy odk_tls_cert
   copy:
     src: "{{ odk_tls_cert }}"
-    dest: ""{{ odk_dir }}/docker/tomcat/tls/{{ odk_tls_cert  }}"
+    dest: "{{ odk_dir }}/docker/tomcat/tls/{{ odk_tls_cert  }}"
     owner: root
     group: root
     mode: 0600
+  notify: restart tomcat
 
 - name: render server.xml
   template:
     src: server.xml.j2
     dest: "{{ odk_dir }}/docker/tomcat/server.xml"
+  notify: restart tomcat
 
-- name: ensure /tmp/ODKAggregate-settings dir exist
+- name: ensure ODKAggregate-settings dir exist
   file:
     path: "{{ odk_dir }}/docker/tomcat/ODKAggregate-settings"
     state: directory

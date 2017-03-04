@@ -201,6 +201,6 @@ RUN set -e \
 
 COPY mysql-connector-java-5.1.40-bin.jar /usr/local/tomcat/lib/mysql-connector-java-5.1.40-bin.jar
 
-EXPOSE 8080
+EXPOSE 8080 8443
 CMD ["catalina.sh", "run"]
 
