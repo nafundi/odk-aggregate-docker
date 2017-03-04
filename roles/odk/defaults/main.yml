@@ -3,6 +3,8 @@
 odk_dir: /usr/local/odk-aggregate
 
 odk_vhost: example.org
+odk_tls_key: key.pem
+odk_tls_cert: cert.pem
 
 odk_superuser: aggregate
 odk_realmstring: "odk ODK Aggregate"
@@ -11,10 +13,6 @@ odk_dependency_packages:
   - fastjar
   - make
   - git
-
-odk_tls_files:
-  - key.pem
-  - cert.pem
 
 odk_systemd_files:
   - mariadb-docker.service

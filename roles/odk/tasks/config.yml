@@ -1,13 +1,20 @@
 ---
 
-- name: copy tls files
+- name: copy odk_tls_key
   copy:
-    src: "{{ item }}"
-    dest: ""{{ odk_dir }}/docker/tomcat/tls/{{ item }}"
+    src: "{{ odk_tls_key }}"
+    dest: ""{{ odk_dir }}/docker/tomcat/tls/{{ odk_tls_key  }}"
     owner: root
     group: root
     mode: 0600
-  with_items: "{{ odk_tls_files }}"
+
+- name: copy odk_tls_cert
+  copy:
+    src: "{{ odk_tls_cert }}"
+    dest: ""{{ odk_dir }}/docker/tomcat/tls/{{ odk_tls_cert  }}"
+    owner: root
+    group: root
+    mode: 0600
 
 - name: render server.xml
   template:
