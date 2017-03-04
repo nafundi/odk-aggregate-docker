@@ -13,8 +13,8 @@ ODK Aggregate installation tools
 
 # Setup domain name
 * Default domain name: "example.org".
-* Port: 8080.
-* Access to ODK Aggregate: http://example.org:8080  (Write "127.0.0.1 example.org" in /etc/hosts) 
+* Ports: 8080 and 8443
+* Access to ODK Aggregate: http://example.org:8080  or https://example.org:8443 (Write "127.0.0.1 example.org" in /etc/hosts) 
 * Setup your domain name in "./roles/odk/defaults/main.yml"  => "odk_vhost: example.org"
 
 
