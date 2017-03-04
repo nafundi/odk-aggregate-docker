@@ -18,6 +18,10 @@ ODK Aggregate installation tools
 * Setup your domain name in "./roles/odk/defaults/main.yml"  => "odk_vhost: example.org"
 
 
+# ODK
+* ODK Aggregate default superuser "aggregate", password: "aggregate"
+
+
 # Requirements
 * Packer and Vagrant by HashiCorp
 * Virtualbox
@@ -39,13 +43,7 @@ ODK Aggregate installation tools
 * Save google service account json to ./googlecompute_account.json or edit "googlecompute_account_file" in in ./variables.json
 
 
-# TODO
-* TLS certs
-* Packer for Google, AWS
-* Cleanup Dockerfiles, docker_entrypoint.sh
-
-
-# INFO
+# Caveats
 * Bug in odk installer in cmd mode - missed database hostname in config
 * odk installer doesn't work without glibc
 * "HTTP/1.1 505 HTTP Version not supported" - got error periodically from amazon s3 when wget -O odk https://opendatakit.org/download/4456/ during docker image smartbrood/odk-tomcat build
